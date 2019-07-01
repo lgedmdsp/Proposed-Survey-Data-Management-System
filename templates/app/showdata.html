@@ -1,0 +1,238 @@
+{% extends 'app/layout.html' %}
+
+{% load widget_tweaks %}
+
+{% load filters %}
+
+{% load humanize %}
+
+{% block title %} All Servey Data {% endblock %}
+
+
+
+
+{% block body %}
+                <section>
+                    <div class="section-body">
+                        <!-- BEGIN DATATABLE 2 -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-head style-primary">
+                                        <header>Proposed Shelter Survey Data</header>                                        
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">  
+                                                        <!---- Search ---->
+                                            <form  method="GET" action="{% url 'showdata' %}">                                                   
+                                                
+
+                                                <div class="col-lg-2">
+                                                    {% if qd_value %} 
+                                                    <input type="text" name='qd'  value="{{qd_value}}" class="form-control" placeholder="District">
+                                                    {% else %}
+                                                    <input type="text" name='qd' class="form-control" placeholder="District">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    {% if qup_value %} 
+                                                    <input type="text" name='qup'  value="{{qup_value}}" class="form-control" placeholder="Upazilla">
+                                                    {% else %}
+                                                    <input type="text" name='qup' class="form-control" placeholder="Upzilla">
+                                                    {% endif %}
+                                                </div>                                          
+                                                <div class="col-lg-2">
+                                                        {% if qun_value %} 
+                                                        <input type="text" name='qun'  value="{{qun_value}}" class="form-control" placeholder="Union">
+                                                        {% else %}
+                                                        <input type="text" name='qun' class="form-control" placeholder="Union">
+                                                        {% endif %}
+                                                </div>
+                                                <div class="col-lg-2">
+                                                        {% if qm_value %} 
+                                                        <input type="text" name='qm'  value="{{qm_value}}" class="form-control" placeholder="Mouza">
+                                                        {% else %}
+                                                        <input type="text" name='qm' class="form-control" placeholder="Mouza">
+                                                        {% endif %}
+                                                </div>  
+                                                <div class="col-lg-2">
+                                                    {% if qv_value %} 
+                                                    <input type="text" name='qv'  value="{{qv_value}}" class="form-control" placeholder="Village">
+                                                    {% else %}
+                                                    <input type="text" name='qv' class="form-control" placeholder="Village">
+                                                    {% endif %}
+                                                </div>    
+                                                <label class="col-lg-2">
+                                                    <button type="submit" class="btn btn-success" >Search</button>
+                                                </label>                                                            
+                                            </form>
+                                                        <!---- Search ---->                                                                                 
+                                        </div>
+
+                                        
+
+                                        
+
+
+                                        <!-- Intelligence -->
+
+                                        <div class="row">
+                                            <h2>Summary</h2>
+                                            <div style="overflow-x:auto;" class="table-responsive">
+                                                <table class="table table-hover table-bordered">
+                                                
+                                                    <thead>
+                                                        <tr>
+                                                            <th >Total Shelter</th>                                         
+                                                            <th> Population</th>
+                                                            <th>Avg. Water Lvl</th> 
+                                                            <th>No. of Pucca Building</th> 
+                                                            <th>No. of Semipucca Building</th>
+                                                            <th>No. of Tin Shed with Wooden Piller</th>                                                                                                              
+                                                            <th>No. of Tin Shed with Bamboo Piller</th>
+                                                            <th>No. of Thatched House</th>
+                                                            <th>No. of Shanties(Jhupri)</th>   
+                                                                                                                                                                
+                                                        </tr>
+                                                    </thead>
+
+                                                <tbody>   
+
+                                                        <tr class="gradeX">
+                                                           <td>{{cnt|intcomma }}</td>
+                                                           <td>{{population|floatformat:"0"|intcomma  }}</td>
+                                                           <td>{{waterlevel|floatformat:3}}</td>
+                                                           <td>{{pucca|floatformat:"0"|intcomma }}</td>
+                                                           <td>{{semipucca|floatformat:"0"|intcomma }}</td>
+                                                           <td>{{wooden|floatformat:"0"|intcomma }}</td>
+                                                           <td>{{bamboo|floatformat:"0"|intcomma }}</td>
+                                                           <td>{{thatched|floatformat:"0"|intcomma }}</td>
+                                                           <td>{{shanty|floatformat:"0"|intcomma }}</td>                                                          
+                                                        </tr>
+                                                    
+                                                </tbody>
+                                                
+                                            </table>
+                                        </div><!--end .table-responsive -->
+                                        </div> <!--end table row-->
+
+                                        <br>
+                                        
+
+
+
+                                        <div class="row">
+                                            <div style="overflow-x:auto;" class="table-responsive">
+                                                <table  data-toggle="table" 
+                                                        data-classes="table table-hover"
+                                                        data-striped="true"
+                                                        data-sort-name="Quality"
+                                                        data-sort-order="desc" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th data-sortable="true">ID</th>                                         
+                                                            <th data-sortable="true">Uniq. ID</th>
+                                                            <th data-sortable="true">Edu. ID</th> 
+                                                            <th data-sortable="true">District</th> 
+                                                            <th data-sortable="true">Upazila</th>
+                                                            <th data-sortable="true">Union</th>                                                                                                              
+                                                            <th data-sortable="true">Mouza</th>
+                                                            <th data-sortable="true">Village</th>
+                                                            <th data-sortable="true">Shelter Name</th>                                                            
+                                                            <th data-sortable="true">GPS</th>                                                            
+                                                            <th data-sortable="true">Distance</th>
+                                                            <th data-sortable="true">Population</th>
+                                                            <th data-sortable="true">Water</th>
+                                                            <th data-sortable="true">Pucca</th>
+                                                            <th data-sortable="true">Semipucca</th>
+                                                            <th data-sortable="true" >Tin Shed(W)</th>
+                                                            <th data-sortable="true" >Tin Shed(B)</th>
+                                                            <th data-sortable="true">Thatched</th>
+                                                            <th data-sortable="true">Shanty</th>
+                                                            <th data-sortable="true">Total</th>
+                                                            <th data-sortable="true" width=20px>Action</th>     
+                                                            <th data-sortable="true" width=30px>Gallery</th>
+                                                          
+                                                            
+                                                                                                    
+                                                        </tr>
+                                                    </thead>
+
+                                                <tbody>
+                                                    {% for sdata in Sdata %}
+                                                    
+                                                        <tr class="gradeX">
+                                                            <td>{{sdata.id}}</td>
+                                                            <td>{{sdata.uniqueid}}</td>
+                                                            <td>{{sdata.eduid|pointzero}}</td>
+                                                            <td>{{sdata.district}}</td>  
+                                                            <td>{{sdata.upazilla}}</td> 
+                                                            <td>{{sdata.s_union}}</td>                                                                                                                                                                                                                                           
+                                                            <td>{{sdata.mouza}}</td> 
+                                                            <td>{{sdata.village}}</td> 
+                                                            <td>{{sdata.sheltername}}</td>
+                                                            <td>{{sdata.northing|floatformat:8}}, {{sdata.easting|floatformat:8}}</td>
+                                                            <td>{{sdata.distance|floatformat:3}}</td>
+                                                            <td>{{sdata.expectedpopulation|floatformat:"0"|intcomma }}</td>
+                                                            <td>{{sdata.waterlevel|floatformat:3}}</td>
+                                                            <td>{{sdata.pucca|floatformat:"0" }}</td>
+                                                            <td>{{sdata.semipucca|floatformat:"0"}}</td>
+                                                            <td>{{sdata.wooden|floatformat:"0"}}</td>
+                                                            <td>{{sdata.bamboo|floatformat:"0"}}</td>
+                                                            <td>{{sdata.thatched|floatformat:"0"}}</td>
+                                                            <td>{{sdata.shanty|floatformat:"0"}}</td>
+                                                            <td>{{sdata.total_house|floatformat:"0"}}</td>
+                                                            <td>                                                                    
+                                                                <a href="{% url 'editdata' sdata.id %}" class="btn ink-reaction btn-floating-action btn-warning"><i class="md md-edit"></i> </a>                 
+                                                            </td>                                                          
+                                                            <td>                                                                    
+                                                                <a href="{% url 'upload' sdata.id %}">Gallery</a>                 
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                                
+                                            </table>
+                                        </div><!--end .table-responsive -->
+                                        </div> <!--end table row-->
+
+                                         <!-- Paginator -->
+                                          {% include 'paginator/paginator.html' with page=Sdata %} 
+                                         <!-- Paginator -->                                     
+
+
+                                    </div>   
+                                </div>       
+                            </div><!--end .col -->
+                        </div><!--end .row -->
+                        <!-- END DATATABLE 2 -->
+
+                    </div><!--end .section-body -->
+                </section>
+
+
+
+
+                <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                <script>
+                        $("#id_district").change(function () {
+                        var url = $("#upazilaForm").attr("data-upazilas-url");  // get the url of the `load_cities` view
+                        var districtID = $(this).val();  // get the selected country ID from the HTML input
+                    
+                        $.ajax({                       // initialize an AJAX request
+                            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                            data: {
+                            'district': districtID       // add the country id to the GET parameters
+                            },
+                            success: function (data) {   // `data` is the return of the `load_cities` view function
+                            $("#id_upazila").html(data);  // replace the contents of the city input with the data that came from the server
+                            }
+                        });
+                    
+                        });
+                </script> -->
+{% endblock %}
+

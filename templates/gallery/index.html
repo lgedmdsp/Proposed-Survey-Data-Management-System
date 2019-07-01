@@ -1,0 +1,27 @@
+{% extends 'app/layout.html' %}
+
+
+{% block body %}
+  <div style="margin: 20px;">
+    <button type="button" class="btn btn-primary js-upload-photos">
+      <span class="glyphicon glyphicon-cloud-upload"></span> Upload photos
+    </button>
+    <input id="fileupload" type="file" name="file" multiple
+           style="display: none;"
+           data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+  </div>
+
+  <table id="gallery" class="table table-bordered">
+
+      {% for photo in li_photo %}
+
+        <div style="width:250px; height:300px; float:left; margin: 10px;">
+
+            <a href="{{ photo.file.url }}"><img src="{{ photo.file.url }}" width="100%" height="100%"></a>
+
+        </div>
+
+      {% endfor %}
+
+  </table>
+{% endblock %}

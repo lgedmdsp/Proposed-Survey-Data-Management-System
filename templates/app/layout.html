@@ -1,0 +1,161 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{% block title %} {% endblock %} </title>
+
+		<!-- BEGIN META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="your,keywords">
+		<meta name="description" content="Short explanation about this website">
+		<!-- END META -->
+
+		<!-- BEGIN STYLESHEETS -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet" href="https://drvic10k.github.io/bootstrap-sortable/Contents/bootstrap-sortable.css" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/materialadmin.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}" />
+        <link type="text/css" rel="stylesheet" href="{% static 'css/libs/select2/select2.css' %}" />
+		<link type="text/css" rel="stylesheet" href="{% static 'css/print.css' %}" />
+	</head>
+	<body > <!--max sidemenu: menubar-pin -->
+
+		<!-- BEGIN HEADER-->
+		<header id="header" >
+			<div class="headerbar">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="headerbar-left">
+					<ul class="header-nav header-nav-options">
+						<li class="header-nav-brand" >
+							<div class="brand-holder">
+								
+									
+
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+										Multipurpose Disaster Shelter Project
+									</button>
+									  
+									  <!-- Modal -->
+									  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+										  <div class="modal-content">
+											<div class="modal-header">
+											  <h5 class="modal-title" id="exampleModalLabel">Multipurpose Disaster Shelter Project</h5>
+											  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											  </button>
+											</div>
+											<div class="modal-body">
+												Note: This website is based on survery data of
+												20 districts for Multipurpose Disester Shelter 
+												Project. All these data are collected in between
+												2015-2017. If any further qury please contact
+												with Md.Rashed Sarowar (Data Management Expert).
+												Phone: 01731069776.
+											</div>
+											<div class="modal-footer">
+											  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>											  
+											</div>
+										  </div>
+										</div>
+									  </div>
+								
+							</div>
+						</li>						
+					</ul>
+				</div>
+				
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="headerbar-right">
+					<ul class="header-nav header-nav-profile">
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
+                                
+								<span class="profile-info">									
+									<h4 class="text-lg text-bold text-primary"><i class="fa fa-user"></i> {{user.username}}</h4>
+								</span>
+							</a>
+
+							<ul class="dropdown-menu animation-dock">								
+								
+								<li><a href="{% url 'password_change' %}"><b>Change Password</b></a></li>
+								<li class="divider"></li>
+								<li><a href="{% url 'logout' %}"><b>Logout</b></a></li>
+							</ul><!--end .dropdown-menu -->
+						</li><!--end .dropdown -->
+					</ul><!--end .header-nav-profile -->
+				</div><!--end #header-navbar-collapse -->
+
+				
+			</div>
+
+			
+		</header>
+		<!-- END HEADER-->
+
+		<!-- BEGIN BASE-->
+		<div id="base">
+
+			
+
+			<!-- BEGIN CONTENT-->
+			<div id="content">
+
+               
+             {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert {{ message.tags }} text-center"{% endif %}>
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+			{% endif %}  
+			
+
+                {% block body %}
+
+                {% endblock %}
+
+			</div><!--end #content-->
+			<!-- END CONTENT -->
+
+			
+
+
+
+		</div><!--end #base-->
+		<!-- END BASE -->
+
+
+		
+
+		<!-- BEGIN JAVASCRIPT -->
+		<script src="{% static 'js/libs/jquery/jquery-1.11.2.min.js' %}"></script>
+		<script src="{% static 'js/libs/jquery/jquery-migrate-1.2.1.min.js' %}"></script>
+		<script src="{% static 'js/libs/bootstrap/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/libs/nanoscroller/jquery.nanoscroller.min.js' %}"></script>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">	
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>             
+
+
+		{# JQUERY FILE UPLOAD SCRIPTS #}
+		<script src="{% static 'js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+		<script src="{% static 'js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+		<script src="{% static 'js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
+		{# PHOTOS PAGE SCRIPTS #}
+		<script src="{% static 'photos/js/basic-upload.js' %}"></script>
+		
+	</body>
+
+	<footer>
+		<div class="footer-copyright text-center py-3 bg-success">© 2019 Copyright: MDSPBD. All Rights Reserved.</div>
+	</footer>
+
+
+	
+</html>

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %} 
+<h4> Welcome to MDSPBD, {% if user.is_authenticated %} {{user.username}}! {% else %} visitor! {% endif %}</h4>
+<br>
+<br>
+<p align="justify">The Government of Bangladesh is implementing the IDA assisted
+ “Multipurpose Disaster Shelter Project (MDSP)” through Local 
+ Government Engineering Department(LGED) under the Ministry of 
+ Local Government Rural Development and Cooperatives (MOLGRD&C)
+  with a view to increased protection for the vulnerable population
+   and livestock in 9 (Nine) districts of the cyclone prone areas
+    during disasters in Bangladesh. The physical works of the
+     “Multipurpose Disaster Shelter Project (MDSP)”are included 
+     in construction of 556 numbers of cyclone shelters, improvement 
+     of 450 numbers of existing shelters and construction/re-construction 
+     of 550km of roads with 500m bridge/culverts to connect cyclone shelters.
+      Total project covers 9 (Nine) Coastal districts namely Barisal, Pirojpur, 
+      Patuakhali, Bhola, Chittagong, Cox’s Bazar, Feni, Lakshmipur and Noakhali.</p>
+
+      <br>
+      <br>
+      <p align="justify">
+            This website is based on survey data of Multipurpose Disaster Shelter Project. Total survey covers 20 districts namely Bagerhat, Barguna, Barisal, Bhola, Chandpur, Chittagong, Cox's Bazar, Faridpur, Feni,  Gopalganj, Jhalokati, Khulna, Lakshmipur, Madaripur, Noakhali, Patuakhali, Pirojpur, Rajbari, Satkhira, Shariatpur. All these data are collected in between 2015 - 2017.
+      </p>
+      <br>
+      <p align="justify">
+            Note: If any further qury please contact
+            with Md.Rashed Sarowar (Data Management Expert).
+            Phone: 01731069776.
+      </p>
+      
+{% else %}
+<h4> Welcome to MDSPBD, {% if user.is_authenticated %} {{user.username}} {% else %} visitor! {% endif %}</h4>
+<br>
+<br>
+<p align="justify">The Government of Bangladesh is implementing the IDA assisted
+        “Multipurpose Disaster Shelter Project (MDSP)” through Local 
+        Government Engineering Department(LGED) under the Ministry of 
+        Local Government Rural Development and Cooperatives (MOLGRD&C)
+         with a view to increased protection for the vulnerable population
+          and livestock in 9 (Nine) districts of the cyclone prone areas
+           during disasters in Bangladesh. The physical works of the
+            “Multipurpose Disaster Shelter Project (MDSP)”are included 
+            in construction of 556 numbers of cyclone shelters, improvement 
+            of 450 numbers of existing shelters and construction/re-construction 
+            of 550km of roads with 500m bridge/culverts to connect cyclone shelters.
+             Total project covers 9 (Nine) Coastal districts namely Barisal, Pirojpur, 
+             Patuakhali, Bhola, Chittagong, Cox’s Bazar, Feni, Lakshmipur and Noakhali.</p>
+
+<br>
+<br>
+<p align="justify">
+      This website is based on survey data of Multipurpose Disaster Shelter Project. Total survey covers 20 districts namely Bagerhat, Barguna, Barisal, Bhola, Chandpur, Chittagong, Cox's Bazar, Faridpur, Feni,  Gopalganj, Jhalokati, Khulna, Lakshmipur, Madaripur, Noakhali, Patuakhali, Pirojpur, Rajbari, Satkhira, Shariatpur. All these data are collected in between 2015 - 2017.
+</p>
+<br>
+<p align="justify">
+      Note: If any further qury please contact
+      with Md.Rashed Sarowar (Data Management Expert).
+      Phone: 01731069776.
+</p>
+
+{% endif %}
+{% endblock %}
