@@ -1,7 +1,7 @@
 Django==2.1.5
 django-widget-tweaks==1.4.3
 gunicorn==19.9.0
-Pillow==5.2.0
+Pillow==8.2.0
 psycopg2==2.7.5
 pytz==2018.5
 whitenoise
